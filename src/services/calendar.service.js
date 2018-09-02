@@ -14,8 +14,8 @@ export default class Calendar {
     getDates() {
         var currentDate = new Date(this.initialDate.valueOf());
         do {
-            this.dates.push(new Date(this.initialDate));
-            this.initialDate.setDate(this.initialDate.getDate() + 1);
+            this.dates.push(new Date(currentDate));
+            currentDate.setDate(currentDate.getDate() + 1);
         } while (currentDate < this.endDate);
     }
 
@@ -67,5 +67,7 @@ export default class Calendar {
             return currentValue;
 
         }, this.dates[0]);
+
+        return calendar;
     }
 }

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import '../extensions/array.extensions';
 import '../extensions/date.extensions';
+import Calendar from './calendar';
 
 class App extends Component {
     constructor(props) {
@@ -9,7 +10,7 @@ class App extends Component {
     }
 
     render() {
-        return <h1>Hola</h1>
+        return <Calendar />
     }
 }
 
