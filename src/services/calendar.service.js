@@ -35,7 +35,7 @@ export default class Calendar {
         var lastMonth = lastDate.getMonth();
         var lastDay = lastDate.getDate();
 
-        var calendar = [{ year: firstYear, months: [{ month: firstMonth, name: firstDate.getMonthName(), days: [] }] }];
+        var calendar = [{ year: firstYear, months: [{ month: firstMonth, name: firstDate.getMonthName(), numberOfDays: firstDate.getNumberOfDays(), days: [] }] }];
 
         this.dates.reduce((oldValue, currentValue, currentIndex) => {
             //Current values
@@ -56,7 +56,7 @@ export default class Calendar {
             //Si inicia un nuevo mes
             if (currentValueMonth > oldValueMonth) {
                 if (calendarOfCurrenteYear.length)
-                    calendarOfCurrenteYear[0].months.push({ month: currentValueMonth, name: currentValue.getMonthName(), days: [{ number: currentValueDay, isWeekend: currentValue.isWeekend(), date: currentValue }] });
+                    calendarOfCurrenteYear[0].months.push({ month: currentValueMonth, name: currentValue.getMonthName(), numberOfDays: currentValue.getNumberOfDays(), days: [{ number: currentValueDay, isWeekend: currentValue.isWeekend(), date: currentValue }] });
             }
             else {
                 if (calendarOfCurrenteYear.length)

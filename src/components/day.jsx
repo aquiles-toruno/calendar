@@ -7,12 +7,13 @@ export default class Day extends Component {
     }
 
     showDate() {
-        alert(this.props.date);
+        if (!this.props.isInvalid)
+            alert(this.props.date);
     }
 
     render() {
         var styles = {
-            color: this.props.isWeekend ? 'yellow' : 'green'
+            color: this.props.isInvalid ? 'red' : this.props.isWeekend ? 'yellow' : 'green'
         }
         return (
             <h4 onClick={this.showDate} style={styles}>{this.props.dayNumber}</h4>
