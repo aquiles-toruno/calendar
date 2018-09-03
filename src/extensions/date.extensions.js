@@ -82,3 +82,18 @@ Date.prototype.getNumberOfDays = function () {
             return 31;
     }
 }
+
+Date.prototype.getNumberOfWeeks = function (weekStartOnSunday = true) {
+    var year = this.getFullYear();
+    var month = this.getMonth();
+
+    var firstDateOfMonth = new Date(year, month, 1);
+    var lastDateOfMonth = new Date(year, month, 0);
+
+    var used = firstDateOfMonth.getDay() + lastDateOfMonth.getDate();
+
+    if (!weekStartOnSunday)
+        used = used + 6;
+
+    return Math.ceil(used / 7);
+}

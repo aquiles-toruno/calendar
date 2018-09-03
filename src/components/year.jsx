@@ -12,7 +12,7 @@ export default class Year extends Component {
             <div>
                 <div className="year-container">
                     {this.props.months.map(element => {
-                        return <Month key={element.month} yearNumber={this.props.yearNumber} monthNumber={element.month} monthName={element.name} numberOfDays={element.numberOfDays} days={element.days} />
+                        return <Month key={element.month} yearNumber={this.props.yearNumber} monthNumber={element.month} monthName={element.name} numberOfDays={element.numberOfDays} numberOfWeeks={element.numberOfWeeks} days={element.days} />
                     })}
                 </div>
             </div>

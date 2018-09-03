@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import '../extensions/array.extensions';
 import '../extensions/date.extensions';
+import '../extensions/int.extensions';
 import Calendar from './calendar';
 
 class App extends Component {

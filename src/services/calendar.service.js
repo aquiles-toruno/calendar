@@ -35,7 +35,7 @@ export default class Calendar {
         var lastMonth = lastDate.getMonth();
         var lastDay = lastDate.getDate();
 
-        var calendar = [{ year: firstYear, months: [{ month: firstMonth, name: firstDate.getMonthName(), numberOfDays: firstDate.getNumberOfDays(), days: [] }] }];
+        var calendar = [{ year: firstYear, months: [{ month: firstMonth, name: firstDate.getMonthName(), numberOfDays: firstDate.getNumberOfDays(), numberOfWeeks: firstDate.getNumberOfWeeks(), weeks: [], days: [] }] }];
 
         this.dates.reduce((oldValue, currentValue, currentIndex) => {
             //Current values
@@ -56,12 +56,14 @@ export default class Calendar {
             //Si inicia un nuevo mes
             if (currentValueMonth > oldValueMonth) {
                 if (calendarOfCurrenteYear.length)
-                    calendarOfCurrenteYear[0].months.push({ month: currentValueMonth, name: currentValue.getMonthName(), numberOfDays: currentValue.getNumberOfDays(), days: [{ number: currentValueDay, isWeekend: currentValue.isWeekend(), date: currentValue }] });
+                    calendarOfCurrenteYear[0].months.push({ month: currentValueMonth, name: currentValue.getMonthName(), numberOfDays: currentValue.getNumberOfDays(), numberOfWeeks: currentValue.getNumberOfWeeks(), weeks: [], days: [{ number: currentValueDay, isWeekend: currentValue.isWeekend(), date: currentValue }] });
             }
             else {
-                if (calendarOfCurrenteYear.length)
+                if (calendarOfCurrenteYear.length) {
                     var calendarOfCurrentMonth = calendarOfCurrenteYear[0].months.findElementByProp('month', currentValueMonth);
-                calendarOfCurrentMonth[0].days.push({ number: currentValueDay, isWeekend: currentValue.isWeekend(), date: currentValue });
+                    this.getDaysOfWeek(calendarOfCurrentMonth[0], { number: currentValueDay, isWeekend: currentValue.isWeekend(), date: currentValue });
+                    calendarOfCurrentMonth[0].days.push({ number: currentValueDay, isWeekend: currentValue.isWeekend(), date: currentValue });
+                }
             }
 
             return currentValue;
@@ -69,5 +71,36 @@ export default class Calendar {
         }, this.dates[0]);
 
         return calendar;
+    }
+
+    getDaysOfWeek(month, day) {
+        debugger;
+        const daysInAWeek = 7;
+        var numberOfDay = day.date.getDay();
+        if (month.weeks.length <= month.numberOfWeeks) {
+            var currentWeek = Object.assign([], month.weeks[month.weeks.length - 1]);
+
+            // if (!currentWeek) {
+            //     currentWeek = [];
+            //     month.weeks.push(currentWeek);
+            // }
+
+            if (currentWeek.length < daysInAWeek) {
+                for (let index = currentWeek.length; index < numberOfDay; index++) {
+                    currentWeek.push(null);
+                }
+
+                currentWeek.push(day);
+            }
+            else {
+                currentWeek = [];
+                for (let index = currentWeek.length; index < numberOfDay; index++) {
+                    currentWeek.push(null);
+                }
+                currentWeek.push(day);
+            }
+
+            month.weeks[month.weeks.length ? month.weeks.length - 1 : 0] = currentWeek;
+        }
     }
 }

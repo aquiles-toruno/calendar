@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import Day from './day';
+import InvalidDay from './invalid-day';
 import '../components/month.css';
+import Week from './week';
 
 export default class Month extends Component {
     constructor(props) {
