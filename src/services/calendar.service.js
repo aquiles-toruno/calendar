@@ -74,33 +74,28 @@ export default class Calendar {
     }
 
     getDaysOfWeek(month, day) {
-        debugger;
         const daysInAWeek = 7;
         var numberOfDay = day.date.getDay();
         if (month.weeks.length <= month.numberOfWeeks) {
-            var currentWeek = Object.assign([], month.weeks[month.weeks.length - 1]);
+            var lastWeek = month.weeks.length - 1;
+            var currentWeek = Object.assign([], month.weeks[lastWeek]);
 
-            // if (!currentWeek) {
-            //     currentWeek = [];
-            //     month.weeks.push(currentWeek);
-            // }
-
+            var indexToInsert = 0;
             if (currentWeek.length < daysInAWeek) {
-                for (let index = currentWeek.length; index < numberOfDay; index++) {
-                    currentWeek.push(null);
-                }
-
-                currentWeek.push(day);
+                indexToInsert = month.weeks.length ? month.weeks.length - 1 : 0;
             }
             else {
                 currentWeek = [];
-                for (let index = currentWeek.length; index < numberOfDay; index++) {
-                    currentWeek.push(null);
-                }
-                currentWeek.push(day);
+                indexToInsert = month.weeks.length;
             }
 
-            month.weeks[month.weeks.length ? month.weeks.length - 1 : 0] = currentWeek;
+            for (let index = currentWeek.length; index < numberOfDay; index++) {
+                currentWeek.push(null);
+            }
+
+            currentWeek.push(day);
+
+            month.weeks[indexToInsert] = currentWeek;
         }
     }
 }

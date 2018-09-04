@@ -10,9 +10,10 @@ export default class Calendar extends Component {
         var endDate = new Date(startDate.valueOf());
         endDate.setDate(endDate.getDate() + daysToAdd);
         var objCalendar = new CalendarService(startDate, endDate);
-
+        var calendar = objCalendar.getCalendar();
+        
         this.state = {
-            calendarData: objCalendar.getCalendar()
+            calendarData: calendar
         }
     }
 
