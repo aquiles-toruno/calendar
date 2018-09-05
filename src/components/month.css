@@ -1,7 +1,9 @@
 .month-container{
-    display: flex;
+    /* display: flex;
     flex-wrap: wrap;
-    margin:-3px 0 0 -3px;
+    margin:-3px 0 0 -3px; */
+    display: flex;
+  flex-direction: column;
 }
 
 .month-container h4{
@@ -10,4 +12,12 @@
     flex-grow: 1;
     text-align: center;
     cursor: pointer;
+}
+
+.month-container div{
+    width: calc(100% - 3px - 1px);
+    margin: 3px 0 0 3px;
+  text-align: center;
+  line-height: 30px;
+  font-size: 20px;
 }

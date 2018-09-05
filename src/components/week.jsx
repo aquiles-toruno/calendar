@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import '../components/week.css';
 
 export default class Week extends Component {
     constructor(props) {
@@ -6,6 +7,6 @@ export default class Week extends Component {
     }
 
     render() {
-        return this.props.children;
+        return <div className="week-container"> {this.props.children}</div>
     }
 }

@@ -9,12 +9,42 @@ export default class Calendar {
         this.endDate = endDate;
         this.dates = [];
         this.getDates();
+        this.getInvalidDays();
+
+        this.dates.sort((a, b) => {
+            return a.date - b.date;
+        });
+    }
+
+    getInvalidDays() {
+        var firstDate = this.initialDate.getDate();
+        var lastDate = this.endDate.getDate();
+        var diffFromFirstday = firstDate - 1;
+        var lastDateOfMonth = new Date(this.endDate.getFullYear(), this.endDate.getMonth() + 1, 0);
+        var diffToLastDate = lastDateOfMonth.getDate() - lastDate;
+
+        diffFromFirstday.toArray().forEach(element => {
+            this.dates.push({
+                isValid: false,
+                date: new Date(this.initialDate.getFullYear(), this.initialDate.getMonth(), element)
+            });
+        });
+
+        diffToLastDate.toArray().forEach(element => {
+            this.dates.push({
+                isValid: false,
+                date: new Date(this.endDate.getFullYear(), this.endDate.getMonth(), element)
+            });
+        });
     }
 
     getDates() {
         var currentDate = new Date(this.initialDate.valueOf());
         do {
-            this.dates.push(new Date(currentDate));
+            this.dates.push({
+                isValid: true,
+                date: new Date(currentDate)
+            });
             currentDate.setDate(currentDate.getDate() + 1);
         } while (currentDate < this.endDate);
     }
@@ -28,24 +58,24 @@ export default class Calendar {
 
         var firstDate = this.dates[0];
         var lastDate = this.dates[this.dates.length - 1];
-        var firstYear = firstDate.getFullYear();
-        var firstDay = firstDate.getDate();
-        var lastYear = lastDate.getFullYear();
-        var firstMonth = firstDate.getMonth();
-        var lastMonth = lastDate.getMonth();
-        var lastDay = lastDate.getDate();
+        var firstYear = firstDate.date.getFullYear();
+        var firstDay = firstDate.date.getDate();
+        var lastYear = lastDate.date.getFullYear();
+        var firstMonth = firstDate.date.getMonth();
+        var lastMonth = lastDate.date.getMonth();
+        var lastDay = lastDate.date.getDate();
 
-        var calendar = [{ year: firstYear, months: [{ month: firstMonth, name: firstDate.getMonthName(), numberOfDays: firstDate.getNumberOfDays(), numberOfWeeks: firstDate.getNumberOfWeeks(), weeks: [], days: [] }] }];
+        var calendar = [{ year: firstYear, months: [{ month: firstMonth, name: firstDate.date.getMonthName(), numberOfDays: firstDate.date.getNumberOfDays(), numberOfWeeks: firstDate.date.getNumberOfWeeks(), weeks: [], days: [] }] }];
 
         this.dates.reduce((oldValue, currentValue, currentIndex) => {
             //Current values
-            var currentValueYear = currentValue.getFullYear();
-            var currentValueMonth = currentValue.getMonth();
-            var currentValueDay = currentValue.getDate();
+            var currentValueYear = currentValue.date.getFullYear();
+            var currentValueMonth = currentValue.date.getMonth();
+            var currentValueDay = currentValue.date.getDate();
             //Old values
-            var oldValueYear = oldValue.getFullYear();
-            var oldValueMonth = oldValue.getMonth();
-            var oldValueDay = oldValue.getDate();
+            var oldValueYear = oldValue.date.getFullYear();
+            var oldValueMonth = oldValue.date.getMonth();
+            var oldValueDay = oldValue.date.getDate();
 
             //Si inicia un nuevo año
             if (currentValueYear > oldValueYear)
@@ -56,13 +86,13 @@ export default class Calendar {
             //Si inicia un nuevo mes
             if (currentValueMonth > oldValueMonth) {
                 if (calendarOfCurrenteYear.length)
-                    calendarOfCurrenteYear[0].months.push({ month: currentValueMonth, name: currentValue.getMonthName(), numberOfDays: currentValue.getNumberOfDays(), numberOfWeeks: currentValue.getNumberOfWeeks(), weeks: [], days: [{ number: currentValueDay, isWeekend: currentValue.isWeekend(), date: currentValue }] });
+                    calendarOfCurrenteYear[0].months.push({ month: currentValueMonth, name: currentValue.date.getMonthName(), numberOfDays: currentValue.date.getNumberOfDays(), numberOfWeeks: currentValue.date.getNumberOfWeeks(), weeks: [], days: [{ number: currentValueDay, isWeekend: currentValue.date.isWeekend(), date: currentValue.date, isValid: currentValue.isValid }] });
             }
             else {
                 if (calendarOfCurrenteYear.length) {
                     var calendarOfCurrentMonth = calendarOfCurrenteYear[0].months.findElementByProp('month', currentValueMonth);
-                    this.getDaysOfWeek(calendarOfCurrentMonth[0], { number: currentValueDay, isWeekend: currentValue.isWeekend(), date: currentValue });
-                    calendarOfCurrentMonth[0].days.push({ number: currentValueDay, isWeekend: currentValue.isWeekend(), date: currentValue });
+                    this.getDaysOfWeek(calendarOfCurrentMonth[0], { number: currentValueDay, isWeekend: currentValue.date.isWeekend(), date: currentValue.date, isValid: currentValue.isValid });
+                    calendarOfCurrentMonth[0].days.push({ number: currentValueDay, isWeekend: currentValue.date.isWeekend(), date: currentValue.date, isValid: currentValue.isValid });
                 }
             }
 
