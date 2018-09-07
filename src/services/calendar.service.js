@@ -30,7 +30,7 @@ export default class Calendar {
             });
         });
 
-        diffToLastDate.toArray().forEach(element => {
+        diffToLastDate.toArray(lastDate + 1, lastDateOfMonth.getDate()).forEach(element => {
             this.dates.push({
                 isValid: false,
                 date: new Date(this.endDate.getFullYear(), this.endDate.getMonth(), element)
@@ -46,7 +46,7 @@ export default class Calendar {
                 date: new Date(currentDate)
             });
             currentDate.setDate(currentDate.getDate() + 1);
-        } while (currentDate < this.endDate);
+        } while (currentDate <= this.endDate);
     }
 
     getCalendar() {
@@ -85,8 +85,12 @@ export default class Calendar {
 
             //Si inicia un nuevo mes
             if (currentValueMonth > oldValueMonth) {
-                if (calendarOfCurrenteYear.length)
-                    calendarOfCurrenteYear[0].months.push({ month: currentValueMonth, name: currentValue.date.getMonthName(), numberOfDays: currentValue.date.getNumberOfDays(), numberOfWeeks: currentValue.date.getNumberOfWeeks(), weeks: [], days: [{ number: currentValueDay, isWeekend: currentValue.date.isWeekend(), date: currentValue.date, isValid: currentValue.isValid }] });
+                if (calendarOfCurrenteYear.length) {
+                    var day = { number: currentValueDay, isWeekend: currentValue.date.isWeekend(), date: currentValue.date, isValid: currentValue.isValid };
+                    var month = { month: currentValueMonth, name: currentValue.date.getMonthName(), numberOfDays: currentValue.date.getNumberOfDays(), numberOfWeeks: currentValue.date.getNumberOfWeeks(), weeks: [], days: [day] };
+                    calendarOfCurrenteYear[0].months.push(month);
+                    this.getDaysOfWeek(month, day);
+                }
             }
             else {
                 if (calendarOfCurrenteYear.length) {
@@ -119,11 +123,19 @@ export default class Calendar {
                 indexToInsert = month.weeks.length;
             }
 
+            //Obtengo los primeros días para completar la semana
             for (let index = currentWeek.length; index < numberOfDay; index++) {
                 currentWeek.push(null);
             }
 
             currentWeek.push(day);
+
+            //Obtengo los días restantes para llegar al final de la semana
+            if (day.date.getDate() == day.date.getLastDateOfMonth().getDate()) {
+                for (let index = currentWeek.length; index < daysInAWeek; index++) {
+                    currentWeek.push(null);
+                }
+            }
 
             month.weeks[indexToInsert] = currentWeek;
         }
