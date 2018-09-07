@@ -1,16 +1,13 @@
 import React, { Component } from 'react';
 
-export default class InvalidDay extends Component {
-    constructor(props) {
-        super(props);
+const InvalidDay = props => {
+    var styles = {
+        backgroundColor: 'gray'
     }
 
-    render() {
-        var styles = {
-            color: 'red'
-        }
-        return (
-            <h4 style={styles}>-</h4>
-        );
-    }
+    return (
+        <h4 style={styles}>-</h4>
+    );
 }
+
+export default InvalidDay;

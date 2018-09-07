@@ -1,6 +1,6 @@
-Number.prototype.toArray = function () {
+Number.prototype.toArray = function (initialElement = 1, lastElement = this) {
     var array = [];
-    for (let index = 1; index <= this; index++) {
+    for (let index = initialElement; index <= lastElement; index++) {
         array.push(index);
     }
 

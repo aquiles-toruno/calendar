@@ -97,3 +97,7 @@ Date.prototype.getNumberOfWeeks = function (weekStartOnSunday = true) {
 
     return Math.ceil(used / 7);
 }
+
+Date.prototype.getLastDateOfMonth = function () {
+    return new Date(this.getFullYear(), this.getMonth() + 1, 0);
+}
