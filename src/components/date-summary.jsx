@@ -9,6 +9,8 @@ const DateSummary = (props) => {
         <br />
         <label>Final date: {props.finalDate}</label>
         <br />
+        <label>Country code: {props.code}</label>
+        <br />
         <label>Legend: </label>
         <div className="legend">
             <span>

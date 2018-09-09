@@ -9,6 +9,7 @@ export default class InputForm extends Component {
         this.state = {
             date: new Date(),
             days: 0,
+            code: '',
             showCalendar: false
         }
         this.onChangeInput = this.onChangeInput.bind(this);
@@ -69,10 +70,11 @@ export default class InputForm extends Component {
             <form name="input-form">
                 <input type="text" name="date" readOnly onClick={this.onToggleCalendar} value={this.formatDate(this.state.date)} />
                 <input type="number" name="days" value={this.state.days} onChange={this.onChangeInput} />
+                <input type="text" name="code" value={this.state.code} onChange={this.onChangeInput} placeholder="Code" />
                 <button type="button" onClick={this.onClickRender}>Render calendar</button>
                 {CalendarInPopup}
             </form>
-            <DateSummary initialDate={this.formatDate(this.state.date)} days={this.state.days} finalDate={this.getFinalDate()} />
+            <DateSummary initialDate={this.formatDate(this.state.date)} days={this.state.days} code={this.state.code} finalDate={this.getFinalDate()} />
         </div>
     }
 }
