@@ -5,6 +5,9 @@
 
 export default class Calendar {
     constructor(initialDate, endDate) {
+        if (endDate < initialDate)
+            throw new Error("The initial date most to be greater than end date");
+
         this.initialDate = initialDate;
         this.endDate = endDate;
         this.dates = [];

@@ -46,8 +46,12 @@ export default function withCalendarPopUp(WrappedComponent, currentDate) {
             var date = this.state ? this.state.currentDate : currentDate;
             var startDate = new Date(date.getFullYear(), date.getMonth(), 1);
             var endDate = date.getLastDateOfMonth();
-            var objCalendar = new CalendarService(startDate, endDate);
-            return objCalendar.getCalendar();
+            try {
+                var objCalendar = new CalendarService(startDate, endDate);
+                return objCalendar.getCalendar();
+            } catch (error) {
+                alert(error.message);
+            }
         }
 
         componentDidUpdate(prevProps, prevState, snapshot) {
