@@ -11,6 +11,8 @@ export default class Calendar extends Component {
         this.state = {
             calendarData: []
         }
+
+        this.onRenderCalendar = this.onRenderCalendar.bind(this);
     }
 
     onRenderCalendar(values) {

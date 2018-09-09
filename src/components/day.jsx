@@ -7,8 +7,11 @@ export default class Day extends Component {
     }
 
     showDate() {
-        if (this.props.isValid)
+        if (this.props.isValid && this.props.getDate)
             this.props.getDate(this.props.date);
+
+        if (this.props.isValid && !this.props.getDate)
+            alert(this.props.date);
     }
 
     render() {
