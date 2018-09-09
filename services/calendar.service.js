@@ -17,6 +17,8 @@ var Calendar = function () {
     function Calendar(initialDate, endDate) {
         _classCallCheck(this, Calendar);
 
+        if (endDate < initialDate) throw new Error("The initial date most to be greater than end date");
+
         this.initialDate = initialDate;
         this.endDate = endDate;
         this.dates = [];

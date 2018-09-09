@@ -57,12 +57,16 @@ var Calendar = function (_Component) {
             var daysToAdd = values.days;
             var endDate = new Date(startDate.valueOf());
             endDate.setDate(endDate.getDate() + daysToAdd);
-            var objCalendar = new _calendar2.default(startDate, endDate);
-            var calendar = objCalendar.getCalendar();
+            try {
+                var objCalendar = new _calendar2.default(startDate, endDate);
+                var calendar = objCalendar.getCalendar();
 
-            this.setState({
-                calendarData: calendar
-            });
+                this.setState({
+                    calendarData: calendar
+                });
+            } catch (error) {
+                alert(error.message);
+            }
         }
     }, {
         key: 'render',
