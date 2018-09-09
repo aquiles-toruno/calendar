@@ -114,7 +114,7 @@ var InputForm = function (_Component) {
                     'form',
                     { name: 'input-form' },
                     _react2.default.createElement('input', { type: 'text', name: 'date', readOnly: true, onClick: this.onToggleCalendar, value: this.formatDate(this.state.date) }),
-                    _react2.default.createElement('input', { type: 'number', name: 'days', value: this.state.days, onChange: this.onChangeInput }),
+                    _react2.default.createElement('input', { type: 'number', name: 'days', min: '0', value: this.state.days, onChange: this.onChangeInput }),
                     _react2.default.createElement(
                         'button',
                         { type: 'button', onClick: this.onClickRender },
