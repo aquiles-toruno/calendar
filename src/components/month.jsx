@@ -26,7 +26,7 @@ export default class Month extends Component {
                                             if (!elementDay)
                                                 return <InvalidDay key={shortid.generate()} />
 
-                                            return <Day key={shortid.generate()} dayNumber={elementDay.number} date={elementDay.date} isWeekend={elementDay.isWeekend} isValid={elementDay.isValid} />
+                                            return <Day key={shortid.generate()} getDate={this.props.getDate} dayNumber={elementDay.number} date={elementDay.date} isWeekend={elementDay.isWeekend} isValid={elementDay.isValid} />
                                         })
                                     }
                                 </Week>

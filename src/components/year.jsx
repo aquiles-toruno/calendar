@@ -8,7 +8,7 @@ const Year = props => {
         <div>
             <div className="year-container">
                 {props.months.map(element => {
-                    return <Month key={shortid.generate()} yearNumber={props.yearNumber} monthNumber={element.month} monthName={element.name} numberOfDays={element.numberOfDays} numberOfWeeks={element.numberOfWeeks} days={element.days} weeks={element.weeks} />
+                    return <Month key={shortid.generate()} getDate={props.getDate} yearNumber={props.yearNumber} monthNumber={element.month} monthName={element.name} numberOfDays={element.numberOfDays} numberOfWeeks={element.numberOfWeeks} days={element.days} weeks={element.weeks} />
                 })}
             </div>
         </div>
