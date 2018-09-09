@@ -40,6 +40,13 @@ var DateSummary = function DateSummary(props) {
         _react2.default.createElement(
             'label',
             null,
+            'Country code: ',
+            props.code
+        ),
+        _react2.default.createElement('br', null),
+        _react2.default.createElement(
+            'label',
+            null,
             'Legend: '
         ),
         _react2.default.createElement(

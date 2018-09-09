@@ -43,6 +43,7 @@ var InputForm = function (_Component) {
         _this.state = {
             date: new Date(),
             days: 0,
+            code: '',
             showCalendar: false
         };
         _this.onChangeInput = _this.onChangeInput.bind(_this);
@@ -115,6 +116,7 @@ var InputForm = function (_Component) {
                     { name: 'input-form' },
                     _react2.default.createElement('input', { type: 'text', name: 'date', readOnly: true, onClick: this.onToggleCalendar, value: this.formatDate(this.state.date) }),
                     _react2.default.createElement('input', { type: 'number', name: 'days', value: this.state.days, onChange: this.onChangeInput }),
+                    _react2.default.createElement('input', { type: 'text', name: 'code', value: this.state.code, onChange: this.onChangeInput, placeholder: 'Code' }),
                     _react2.default.createElement(
                         'button',
                         { type: 'button', onClick: this.onClickRender },
@@ -122,7 +124,7 @@ var InputForm = function (_Component) {
                     ),
                     CalendarInPopup
                 ),
-                _react2.default.createElement(_dateSummary2.default, { initialDate: this.formatDate(this.state.date), days: this.state.days, finalDate: this.getFinalDate() })
+                _react2.default.createElement(_dateSummary2.default, { initialDate: this.formatDate(this.state.date), days: this.state.days, code: this.state.code, finalDate: this.getFinalDate() })
             );
         }
     }]);
