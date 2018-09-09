@@ -1,0 +1,26 @@
+.legend{
+display: inline;
+}
+
+.legend em{
+    height: 13px;
+    width: 13px;
+    display: inline-block;
+    border-radius: 10px;
+}
+
+.legend em.invalid{
+    background-color: gray;
+}
+
+.legend em.valid{
+    background-color: green;
+}
+
+.legend em.weekend{
+    background-color: yellow;
+}
+
+.legend em.holiday{
+    background-color: blue;
+}

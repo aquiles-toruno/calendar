@@ -2,7 +2,6 @@ const PATH = require('path');
 var webpack = require('webpack');
 
 module.exports = (env = 'dev') => {
-    console.log(env);
     return {
         mode: "development",
         entry: './src/components/app.jsx',
