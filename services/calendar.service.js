@@ -105,7 +105,7 @@ var Calendar = function () {
                 //Si inicia un nuevo mes
                 if (currentValueMonth > oldValueMonth || currentValueYear > oldValueYear) {
                     if (calendarOfCurrenteYear.length) {
-                        var day = { number: currentValueDay, isWeekend: currentValue.date.isWeekend(), date: currentValue.date, isValid: currentValue.isValid };
+                        var day = { number: currentValueDay, isWeekend: currentValue.date.isWeekend(), isHoliday: currentValue.date.isHoliday(), date: currentValue.date, isValid: currentValue.isValid };
                         var month = { month: currentValueMonth, name: currentValue.date.getMonthName(), numberOfDays: currentValue.date.getNumberOfDays(), numberOfWeeks: currentValue.date.getNumberOfWeeks(), weeks: [], days: [day] };
                         calendarOfCurrenteYear[0].months.push(month);
                         _this2.getDaysOfWeek(month, day);
@@ -113,8 +113,8 @@ var Calendar = function () {
                 } else {
                     if (calendarOfCurrenteYear.length) {
                         var calendarOfCurrentMonth = calendarOfCurrenteYear[0].months.findElementByProp('month', currentValueMonth);
-                        _this2.getDaysOfWeek(calendarOfCurrentMonth[0], { number: currentValueDay, isWeekend: currentValue.date.isWeekend(), date: currentValue.date, isValid: currentValue.isValid });
-                        calendarOfCurrentMonth[0].days.push({ number: currentValueDay, isWeekend: currentValue.date.isWeekend(), date: currentValue.date, isValid: currentValue.isValid });
+                        _this2.getDaysOfWeek(calendarOfCurrentMonth[0], { number: currentValueDay, isWeekend: currentValue.date.isWeekend(), isHoliday: currentValue.date.isHoliday(), date: currentValue.date, isValid: currentValue.isValid });
+                        calendarOfCurrentMonth[0].days.push({ number: currentValueDay, isWeekend: currentValue.date.isWeekend(), isHoliday: currentValue.date.isHoliday(), date: currentValue.date, isValid: currentValue.isValid });
                     }
                 }
 

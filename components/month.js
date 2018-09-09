@@ -75,7 +75,7 @@ var Month = function (_Component) {
                             elementWeek.map(function (elementDay) {
                                 if (!elementDay) return _react2.default.createElement(_invalidDay2.default, { key: _shortid2.default.generate() });
 
-                                return _react2.default.createElement(_day2.default, { key: _shortid2.default.generate(), getDate: _this2.props.getDate, dayNumber: elementDay.number, date: elementDay.date, isWeekend: elementDay.isWeekend, isValid: elementDay.isValid });
+                                return _react2.default.createElement(_day2.default, { key: _shortid2.default.generate(), getDate: _this2.props.getDate, dayNumber: elementDay.number, date: elementDay.date, isWeekend: elementDay.isWeekend, isHoliday: elementDay.isHoliday, isValid: elementDay.isValid });
                             })
                         )
                     );

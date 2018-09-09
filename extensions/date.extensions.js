@@ -103,3 +103,16 @@ Date.prototype.getNumberOfWeeks = function () {
 Date.prototype.getLastDateOfMonth = function () {
     return new Date(this.getFullYear(), this.getMonth() + 1, 0);
 };
+
+Date.prototype.isHoliday = function () {
+    var holidays = [{ day: 1, month: 1, name: "New Year's Day" }, { day: 11, month: 4, name: "Juan Santamaría Day" }, { day: 1, month: 5, name: "Labor Day" }, { day: 25, month: 7, name: "Anexión de Guanacaste Day" }, { day: 2, month: 8, name: "Virgen of Los Angeles Day" }, { day: 15, month: 8, name: "Mother's Day" }, { day: 15, month: 9, name: "Independence Day" }, { day: 12, month: 10, name: "Cultures National Day" }, { day: 25, month: 12, name: "Christmas Day" }];
+
+    var month = this.getMonth() + 1;
+    var day = this.getDate();
+
+    var holidaysDays = holidays.filter(function (element) {
+        return element.day === day && element.month === month;
+    });
+
+    return holidaysDays.length ? { isHoliday: true, holiday: holidaysDays[0] } : false;
+};

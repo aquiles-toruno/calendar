@@ -40,12 +40,14 @@ var Day = function (_Component) {
     }, {
         key: 'render',
         value: function render() {
+            var holidayStyle = this.props.isHoliday === false ? '' : this.props.isHoliday.isHoliday ? 'blue' : '';
+            var title = holidayStyle != "" ? this.props.isHoliday.holiday.name : '';
             var styles = {
-                backgroundColor: !this.props.isValid ? 'gray' : this.props.isWeekend ? 'yellow' : 'green'
+                backgroundColor: holidayStyle != "" ? 'blue' : !this.props.isValid ? 'gray' : this.props.isWeekend ? 'yellow' : 'green'
             };
             return _react2.default.createElement(
                 'h4',
-                { onClick: this.showDate, style: styles },
+                { title: title, onClick: this.showDate, style: styles },
                 this.props.dayNumber
             );
         }
