@@ -3,21 +3,21 @@
     flex-wrap: wrap;
     margin:-3px 0 0 -3px; */
     display: flex;
-  flex-direction: column;
+    flex-direction: column;
 }
 
 .month-container h4{
-    width: calc(100% * (1/7) - 3px - 1px);
-    margin: 3px 0 0 3px;
+    width: calc(100% * (1/7) - 4px - 1px);
+    margin: 2px 0 2px 3px;
     flex-grow: 1;
     text-align: center;
     cursor: pointer;
 }
 
 .month-container div{
-    width: calc(100% - 3px - 1px);
-    margin: 3px 0 0 3px;
-  text-align: center;
-  line-height: 30px;
-  font-size: 20px;
+    width: calc(100% - 4px - 1px);
+    margin: 2px 0 2px 3px;
+    text-align: center;
+    line-height: 30px;
+    font-size: 20px;
 }

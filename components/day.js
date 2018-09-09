@@ -33,7 +33,9 @@ var Day = function (_Component) {
     _createClass(Day, [{
         key: 'showDate',
         value: function showDate() {
-            if (this.props.isValid) alert(this.props.date);
+            if (this.props.isValid && this.props.getDate) this.props.getDate(this.props.date);
+
+            if (this.props.isValid && !this.props.getDate) alert(this.props.date);
         }
     }, {
         key: 'render',

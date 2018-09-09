@@ -22,6 +22,10 @@ var _shortid = require('shortid');
 
 var _shortid2 = _interopRequireDefault(_shortid);
 
+var _inputForm = require('./input-form');
+
+var _inputForm2 = _interopRequireDefault(_inputForm);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -38,25 +42,35 @@ var Calendar = function (_Component) {
 
         var _this = _possibleConstructorReturn(this, (Calendar.__proto__ || Object.getPrototypeOf(Calendar)).call(this, props));
 
-        var startDate = new Date('2018/09/01');
-        var daysToAdd = 15;
-        var endDate = new Date(startDate.valueOf());
-        endDate.setDate(endDate.getDate() + daysToAdd);
-        var objCalendar = new _calendar2.default(startDate, endDate);
-        var calendar = objCalendar.getCalendar();
-
         _this.state = {
-            calendarData: calendar
+            calendarData: []
         };
+
+        _this.onRenderCalendar = _this.onRenderCalendar.bind(_this);
         return _this;
     }
 
     _createClass(Calendar, [{
+        key: 'onRenderCalendar',
+        value: function onRenderCalendar(values) {
+            var startDate = values.date;
+            var daysToAdd = values.days;
+            var endDate = new Date(startDate.valueOf());
+            endDate.setDate(endDate.getDate() + daysToAdd);
+            var objCalendar = new _calendar2.default(startDate, endDate);
+            var calendar = objCalendar.getCalendar();
+
+            this.setState({
+                calendarData: calendar
+            });
+        }
+    }, {
         key: 'render',
         value: function render() {
             return _react2.default.createElement(
                 'div',
                 null,
+                _react2.default.createElement(_inputForm2.default, { getInputValues: this.onRenderCalendar }),
                 this.state.calendarData.map(function (element) {
                     return _react2.default.createElement(_year2.default, { key: _shortid2.default.generate(), yearNumber: element.year, months: element.months });
                 })

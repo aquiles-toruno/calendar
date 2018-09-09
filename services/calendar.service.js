@@ -101,7 +101,7 @@ var Calendar = function () {
                 var calendarOfCurrenteYear = calendar.findElementByProp('year', currentValueYear);
 
                 //Si inicia un nuevo mes
-                if (currentValueMonth > oldValueMonth) {
+                if (currentValueMonth > oldValueMonth || currentValueYear > oldValueYear) {
                     if (calendarOfCurrenteYear.length) {
                         var day = { number: currentValueDay, isWeekend: currentValue.date.isWeekend(), date: currentValue.date, isValid: currentValue.isValid };
                         var month = { month: currentValueMonth, name: currentValue.date.getMonthName(), numberOfDays: currentValue.date.getNumberOfDays(), numberOfWeeks: currentValue.date.getNumberOfWeeks(), weeks: [], days: [day] };

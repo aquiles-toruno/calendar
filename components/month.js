@@ -52,6 +52,8 @@ var Month = function (_Component) {
     _createClass(Month, [{
         key: 'render',
         value: function render() {
+            var _this2 = this;
+
             return _react2.default.createElement(
                 'div',
                 { className: 'month-container' },
@@ -73,7 +75,7 @@ var Month = function (_Component) {
                             elementWeek.map(function (elementDay) {
                                 if (!elementDay) return _react2.default.createElement(_invalidDay2.default, { key: _shortid2.default.generate() });
 
-                                return _react2.default.createElement(_day2.default, { key: _shortid2.default.generate(), dayNumber: elementDay.number, date: elementDay.date, isWeekend: elementDay.isWeekend, isValid: elementDay.isValid });
+                                return _react2.default.createElement(_day2.default, { key: _shortid2.default.generate(), getDate: _this2.props.getDate, dayNumber: elementDay.number, date: elementDay.date, isWeekend: elementDay.isWeekend, isValid: elementDay.isValid });
                             })
                         )
                     );

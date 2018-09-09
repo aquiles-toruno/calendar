@@ -1,0 +1,12 @@
+.popup{
+    position: absolute;
+    width: 210px;
+    background-color: white;
+    border: 1px solid #e0dddd;
+    box-shadow: 0px 1px 3px 1px #4a4747;
+}
+
+.popup-commands{
+    text-align: center;
+    margin: 3px 0;
+}

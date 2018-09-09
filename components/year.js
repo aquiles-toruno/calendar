@@ -28,7 +28,7 @@ var Year = function Year(props) {
             'div',
             { className: 'year-container' },
             props.months.map(function (element) {
-                return _react2.default.createElement(_month2.default, { key: _shortid2.default.generate(), yearNumber: props.yearNumber, monthNumber: element.month, monthName: element.name, numberOfDays: element.numberOfDays, numberOfWeeks: element.numberOfWeeks, days: element.days, weeks: element.weeks });
+                return _react2.default.createElement(_month2.default, { key: _shortid2.default.generate(), getDate: props.getDate, yearNumber: props.yearNumber, monthNumber: element.month, monthName: element.name, numberOfDays: element.numberOfDays, numberOfWeeks: element.numberOfWeeks, days: element.days, weeks: element.weeks });
             })
         )
     );
